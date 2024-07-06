@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import axios from './components/config';
+import LoginForm from './components/login/login';
 
-function App() {
+
+const App = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.post('http://localhost:3030/user/add') // Remplacez '/endpoint' par votre chemin API
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('Il y a eu une erreur !', error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Chargement...</div>;
+  }
+
+  function LoadingIndicator() {
+    return <div>Chargement...</div>;
+  }
+  
+  function DataDisplay({ data }) {
+    return <div>Data: {JSON.stringify(data)}</div>;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LoginForm />
     </div>
   );
-}
 
+};
 export default App;
