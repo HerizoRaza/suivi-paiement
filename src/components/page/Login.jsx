@@ -10,9 +10,9 @@ const SignupForm = () => {
   };
 
   return (
-    <Container className="d-flex align-items-center justify-content-center min-vh-100">
-      <Row className="w-100 justify-content-center">
-        <Col sm="8" md="6" lg="4">
+    <Container>
+      <Row>
+        <Col sm="6">
           <div className="form-box">
             <div className="form-top">
               <div className="form-top-left">

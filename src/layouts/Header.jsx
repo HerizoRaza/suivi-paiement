@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import {
-  Form,
   Input,
-  Button,
-  Nav,
-  InputGroup,
-  InputGroupText,
   Navbar,
   Collapse,
+  Nav,
+  NavItem,
   NavbarBrand,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   Dropdown,
+  Button,
 } from "reactstrap";
 import Logo from "./Logo";
 import { ReactComponent as LogoWhite } from "../assets/images/logos/fid.svg";
 import user1 from "../assets/images/users/user4.jpg";
 
-const Header = ({ onSearch }) => {
+const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
@@ -27,20 +26,9 @@ const Header = ({ onSearch }) => {
   const Handletoggle = () => {
     setIsOpen(!isOpen);
   };
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    onSearch(searchTerm);
-  };
   const showMobilemenu = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
-  
   return (
     <Navbar color="white" light expand="md" className="fix-header">
       <div className="d-flex align-items-center">
@@ -74,22 +62,22 @@ const Header = ({ onSearch }) => {
       </div>
 
       <Collapse navbar isOpen={isOpen}>
-          <Form onSubmit={handleFormSubmit}>
-            <InputGroup>
-              <Input
-                type="text"
-                placeholder="Rechercher..."
-                value={searchTerm}
-                onChange={handleInputChange}
-              />
-              <InputGroupText>
-                <Button type="submit" color="primary">
-                  Rechercher
-                </Button>
-              </InputGroupText>
-            </InputGroup>
-          </Form>
+        <Nav className="me-auto" navbar>
+          <NavItem>
+            <Link to="/starter" className="nav-link">
+              RAKOTONIRINA 
+            </Link>
+          </NavItem>
+        </Nav>
+        <div>
+            <Input
+              bsSize="sm"
+              type="search"
+              placeholder="Recherche..."
+            />
+          </div>
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+
           <DropdownToggle color="transparent">
             <img
               src={user1}
@@ -100,12 +88,10 @@ const Header = ({ onSearch }) => {
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem header>Info</DropdownItem>
-            <DropdownItem>My Account</DropdownItem>
-            <DropdownItem>Edit Profile</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>My Balance</DropdownItem>
-            <DropdownItem>Inbox</DropdownItem>
-            <DropdownItem>Logout</DropdownItem>
+            <DropdownItem>Profile</DropdownItem>
+            <DropdownItem>Création d'un compte</DropdownItem>
+            <DropdownItem>Notification</DropdownItem>
+            <DropdownItem>Déconnection</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Collapse>

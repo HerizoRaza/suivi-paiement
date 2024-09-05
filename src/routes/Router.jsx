@@ -6,7 +6,8 @@ const FullLayout = lazy(() => import("../layouts/FullLayout.jsx"));
 
 /***** Pages ****/
 const Starter = lazy(() => import("../views/Starter.jsx"));
-const Login = lazy(() => import("../views/Starter.jsx"));
+const Register = lazy(() => import("../views/login/register.jsx"))
+const Login = lazy(() => import("../views/login/login.jsx"))
 
 /*****Routes******/
 const ThemeRoutes = [
@@ -18,6 +19,12 @@ const ThemeRoutes = [
         { path: "/starter", exact: true, element: <Starter /> },
       ],
     },
+    {
+      children: [
+        { path: "/register", exact: true, element: <Register /> },
+        { path: "/login", exact: true, element: <Login/> },
+      ],
+    }
   ];
 
   export default ThemeRoutes;
